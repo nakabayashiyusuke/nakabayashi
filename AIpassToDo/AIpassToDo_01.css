@@ -18,7 +18,7 @@ body {
     z-index: 100;
     overflow: hidden;
 }
-#progress-bar {  /*CSSのセレクタをクラス(.)からID(#)に変更*/
+.progress-bar {  
     height: 25px;
     background-color: #27ae60;
     color: white;
