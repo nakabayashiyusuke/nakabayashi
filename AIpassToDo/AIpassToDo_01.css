@@ -7,6 +7,27 @@ body {
     padding: 0 20px;
     background-color: #f9f9f9;
 }
+/* 進捗バーのスタイル */
+.progress-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    margin: 20px 0;
+    position: sticky; /* 画面上部に固定 */
+    top: 0;
+    z-index: 100;
+    overflow: hidden;
+}
+.progress-bar {
+    height: 25px;
+    background-color: #27ae60;
+    color: white;
+    text-align: center;
+    line-height: 25px;
+    width: 0%;
+    transition: width 0.4s ease;
+    font-size: 0.9em;
+}
 h1 {
     text-align: center;
     color: #2c3e50;
@@ -53,6 +74,5 @@ label {
 /* JavaScriptで付与する「完了」用のスタイル */
 .is-completed {
     color: #27ae60 !important;
-    text-decoration: line-through;
     font-weight: bold;
 }
