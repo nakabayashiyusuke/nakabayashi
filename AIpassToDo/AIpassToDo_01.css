@@ -25,6 +25,10 @@ body {
     text-align: center;
     line-height: 25px;
     width: 0%;
+
+    min-width: 35px;
+    border-radius: 10px;
+
     transition: width 0.4s ease;
     font-size: 0.9em;
 }
