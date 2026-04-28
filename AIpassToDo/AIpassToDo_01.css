@@ -20,17 +20,19 @@ body {
 }
 .progress-bar {  
     height: 25px;
-    background-color: #27ae60;
+    background-color: #27ae60; /* 緑 */
     color: white;
     text-align: center;
     line-height: 25px;
-    width: 0%;
-
+    transition: width 0.4s ease, background-color 0.4s ease; /* 背景色も滑らかに変える */
     min-width: 35px;
     border-radius: 10px;
-
-    transition: width 0.4s ease;
     font-size: 0.9em;
+}
+/* 0%の時だけ適用するスタイル */
+.progress-bar.is-empty {
+    background-color: #bdc3c7 !important; /* 落ち着いたグレー */
+    color: #fff; /* 文字は白のまま、あるいは #7f8c8d (濃いグレー) でもOK */
 }
 h1 {
     text-align: center;
