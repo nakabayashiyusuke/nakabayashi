@@ -7,11 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const checkedCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
         const percentage = Math.round((checkedCount / total) * 100);
 
-        if (percent === 0) {
-    progressBar.classList.add('is-empty');
-} else {
-    progressBar.classList.remove('is-empty');
-}
+
 
         // バーの幅とテキストを更新
         progressBar.style.width = percentage + '%';
