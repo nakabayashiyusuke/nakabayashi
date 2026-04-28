@@ -1,7 +1,5 @@
 
-/* =========================
-   全体
-========================= */
+/*全体の土台設定*/
 body {
     font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
     line-height: 1.6;
@@ -11,36 +9,39 @@ body {
     padding: 0 20px;
     background-color: #f9f9f9;
 }
+/* --- 進捗表示エリア（固定設定） --- */
 
-/* 追加：進捗度ラベルのスタイル */
+/* 「進捗度」のラベルテキスト */
 .progress-label {
     font-size: 0.9em;
     font-weight: bold;
     color: #2c3e50;
     margin-bottom: 5px;
     
-    /* 進捗バーと一緒にスクロールについてくるように設定 */
+/* 画面上部に固定 */    
     position: sticky;
     top: 0;
     z-index: 101;
-    background-color: #f9f9f9; /* 背景と同色にして文字が重ならないように */
+    background-color: #f9f9f9; /* 背後の文字が透けないよう背景色を指定 */
     padding-top: 10px;
 }
 
-/* =========================
-   進捗バー
-========================= */
+/* 進捗バーの外枠*/
 .progress-container {
     width: 100%;
     background-color: #e0e0e0;
     border-radius: 10px;
     margin: 5px 0 20px 0;
+
+    /*ラベルの下に固定 */
     position: sticky;
     top: 35px;
     z-index: 100;
     overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,1);
 }
 
+/*進捗バー本体*/
 .progress-bar {
     height: 25px;
     background-color: #27ae60;
@@ -58,9 +59,7 @@ body {
     background-color: #bdc3c7 !important;
 }
 
-/* =========================
-   タイトル
-========================= */
+/* --- コンテンツのスタイル --- */
 h1 {
     text-align: center;
     color: #2c3e50;
