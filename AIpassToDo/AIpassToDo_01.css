@@ -1,4 +1,7 @@
-/* 全体の土台設定 */
+
+/* =========================
+   全体
+========================= */
 body {
     font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
     line-height: 1.6;
@@ -9,7 +12,9 @@ body {
     background-color: #f9f9f9;
 }
 
-/* 進捗バーのスタイル */
+/* =========================
+   進捗バー
+========================= */
 .progress-container {
     width: 100%;
     background-color: #e0e0e0;
@@ -38,6 +43,9 @@ body {
     background-color: #bdc3c7 !important;
 }
 
+/* =========================
+   タイトル
+========================= */
 h1 {
     text-align: center;
     color: #2c3e50;
@@ -46,10 +54,9 @@ h1 {
 }
 
 /* =========================
-   🔥 アコーディオン対応
+   アコーディオン（章）
 ========================= */
 
-/* 章コンテナ */
 .chapter {
     margin-bottom: 10px;
 }
@@ -64,27 +71,49 @@ h2 {
     font-size: 1.2em;
 
     display: flex;
-    justify-content: space-between;
     align-items: center;
 
-    cursor: pointer; /* クリック可能感 */
+    cursor: pointer;
     user-select: none;
     transition: opacity 0.2s;
 }
 
+/* ホバー */
 h2:hover {
     opacity: 0.9;
 }
 
-/* 章の進捗表示（右側） */
+/* =========================
+   右端進捗（重要修正）
+========================= */
 .chapter-progress {
+    margin-left: auto;   /* ←これで右端固定 */
     font-size: 0.9em;
     font-weight: bold;
-    color: #fff;
     opacity: 0.9;
 }
 
-/* ▼ 中身はデフォルト非表示 */
+/* =========================
+   矢印アイコン
+========================= */
+
+.chapter-title::after {
+    content: "▼";
+    margin-left: 10px;
+    font-size: 0.9em;
+    transition: transform 0.2s ease;
+}
+
+/* 開いたとき */
+.chapter.open .chapter-title::after {
+    content: "▲";
+}
+
+/* =========================
+   中身（アコーディオン）
+========================= */
+
+/* 閉じてる状態 */
 .item-group {
     background-color: #fff;
     padding: 10px;
@@ -92,23 +121,17 @@ h2:hover {
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 
     display: none;
-    overflow: hidden;
 }
 
-/* ▼ 開いたときだけ表示 */
+/* 開いた状態 */
 .chapter.open .item-group {
     display: block;
 }
 
-/* カード型の容器 */
-.item-group {
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
+/* =========================
+   タスク
+========================= */
 
-/* 各タスク一行のスタイル */
 .todo-item {
     display: flex;
     align-items: center;
@@ -148,6 +171,7 @@ label {
     transition: color 0.3s;
 }
 
+/* 完了状態 */
 .is-completed {
     color: #27ae60 !important;
     font-weight: bold;
