@@ -101,6 +101,7 @@ h2:hover {
     content: "▼";
     margin-left: 10px;
     font-size: 0.9em;
+    color: #ffdd57;
     transition: transform 0.2s ease;
 }
 
