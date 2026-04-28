@@ -1,21 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     const progressBar = document.getElementById('progress-bar');
-    const STORAGE_KEY = 'ai_learning_progress'; // ローカルストレージ用のキー名
+    const STORAGE_KEY = 'ai_learning_progress';
 
     /**
-     * 【保存】現在のチェック状態をローカルストレージに保存する
+     * 【保存】チェック状態保存
      */
     function saveProgress() {
         const checkedIds = Array.from(checkboxes)
             .filter(cb => cb.checked)
             .map(cb => cb.id);
-        
+
         localStorage.setItem(STORAGE_KEY, JSON.stringify(checkedIds));
     }
 
     /**
-     * 【読み込み】保存されたデータを復元する
+     * 【読み込み】復元
      */
     function loadProgress() {
         const savedData = localStorage.getItem(STORAGE_KEY);
@@ -30,14 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * 【更新】画面上の進捗表示（バー、章ごとの数字、スタイル）を更新する
+     * 【進捗更新】
      */
     function updateProgress() {
         const total = checkboxes.length;
         const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
         const percentage = total === 0 ? 0 : Math.round((checkedCount / total) * 100);
 
-        // プログレスバーの更新
+        // プログレスバー
         if (percentage === 0) {
             progressBar.classList.add('is-empty');
         } else {
@@ -46,44 +46,48 @@ document.addEventListener('DOMContentLoaded', () => {
         progressBar.style.width = percentage + '%';
         progressBar.textContent = percentage + '%';
 
-        // ラベルのスタイル（緑色・太字）の更新
+        // ラベル更新
         checkboxes.forEach(checkbox => {
             const label = checkbox.nextElementSibling;
             if (checkbox.checked) {
                 label.classList.add('is-completed');
             } else {
-                label.classList.remove('is-completed'); 
+                label.classList.remove('is-completed');
             }
         });
 
-        // 章ごとの進捗（0/0 の部分）の更新
-        const chapters = document.querySelectorAll('h2');
-        chapters.forEach(h2 => {
-            const group = h2.nextElementSibling;
-            if (!group) return;
+        // 章ごとの進捗更新
+        const chapters = document.querySelectorAll('.chapter');
+        chapters.forEach(chapter => {
+            const boxes = chapter.querySelectorAll('input[type="checkbox"]');
+            const checked = chapter.querySelectorAll('input[type="checkbox"]:checked');
+            const span = chapter.querySelector('.chapter-progress');
 
-            const boxes = group.querySelectorAll('input[type="checkbox"]');
-            const checked = group.querySelectorAll('input[type="checkbox"]:checked');
-            const span = h2.querySelector('.chapter-progress');
             if (span) {
                 span.textContent = `${checked.length}/${boxes.length}`;
             }
         });
     }
 
-    // --- 初期化処理 ---
+    // --- 🔥 アコーディオン機能追加 ---
+    const chapterTitles = document.querySelectorAll('.chapter-title');
 
-    // 1. 保存されているデータを読み込む
+    chapterTitles.forEach(title => {
+        title.addEventListener('click', () => {
+            const chapter = title.parentElement;
+            chapter.classList.toggle('open');
+        });
+    });
+
+    // --- 初期化 ---
+
     loadProgress();
-
-    // 2. 読み込んだデータに基づいて表示を最新にする
     updateProgress();
 
-    // 3. 各チェックボックスにイベントを設定
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', () => {
-            updateProgress(); // 見た目を更新
-            saveProgress();   // データを保存
+            updateProgress();
+            saveProgress();
         });
     });
 });
