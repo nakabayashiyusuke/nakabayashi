@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function saveProgress() {
         const checkedIds = Array.from(checkboxes)
-            .filter(cb => cb.checked)
-            .map(cb => cb.id);
+        .filter(cb => cb.checked)
+        .map(cb => cb.id);
 
         localStorage.setItem(STORAGE_KEY, JSON.stringify(checkedIds));
     }
@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const checkedIds = JSON.parse(savedData);
         checkboxes.forEach(cb => {
-            if (checkedIds.includes(cb.id)) {
-                cb.checked = true;
-            }
+        if (checkedIds.includes(cb.id)) {
+        cb.checked = true;
+        }
         });
     }
 
@@ -39,33 +39,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // プログレスバー
         if (percentage === 0) {
-            progressBar.classList.add('is-empty');
+        progressBar.classList.add('is-empty');
         } else {
-            progressBar.classList.remove('is-empty');
+        progressBar.classList.remove('is-empty');
         }
         progressBar.style.width = percentage + '%';
         progressBar.textContent = percentage + '%';
 
         // ラベル更新
         checkboxes.forEach(checkbox => {
-            const label = checkbox.nextElementSibling;
-            if (checkbox.checked) {
-                label.classList.add('is-completed');
-            } else {
-                label.classList.remove('is-completed');
-            }
+        const label = checkbox.nextElementSibling;
+        if (checkbox.checked) {
+        label.classList.add('is-completed');
+        } else {
+        label.classList.remove('is-completed');
+        }
         });
 
         // 章ごとの進捗更新
         const chapters = document.querySelectorAll('.chapter');
         chapters.forEach(chapter => {
-            const boxes = chapter.querySelectorAll('input[type="checkbox"]');
-            const checked = chapter.querySelectorAll('input[type="checkbox"]:checked');
-            const span = chapter.querySelector('.chapter-progress');
+        const boxes = chapter.querySelectorAll('input[type="checkbox"]');
+        const checked = chapter.querySelectorAll('input[type="checkbox"]:checked');
+        const span = chapter.querySelector('.chapter-progress');
 
-            if (span) {
-                span.textContent = `${checked.length}/${boxes.length}`;
-            }
+        if (span) {
+        span.textContent = `${checked.length}/${boxes.length}`;
+        }
         });
     }
 
@@ -73,10 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const chapterTitles = document.querySelectorAll('.chapter-title');
 
     chapterTitles.forEach(title => {
-        title.addEventListener('click', () => {
-            const chapter = title.parentElement;
-            chapter.classList.toggle('open');
-        });
+    title.addEventListener('click', () => {
+    const chapter = title.parentElement;
+    chapter.classList.toggle('open');
+    });
     });
 
     // --- 初期化 ---
@@ -86,8 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', () => {
-            updateProgress();
-            saveProgress();
-        });
+
+    updateProgress();
+    saveProgress();
+    });
     });
 });
