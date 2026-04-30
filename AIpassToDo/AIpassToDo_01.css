@@ -1,5 +1,4 @@
-
-/*全体の土台設定*/
+/* --- 土台設定 --- */
 body {
     font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
     line-height: 1.6;
@@ -9,57 +8,50 @@ body {
     padding: 0 20px;
     background-color: #f9f9f9;
 }
-/* --- 進捗表示エリア（固定設定） --- */
 
-/* 「進捗度」のラベルテキスト */
+/* --- 進捗表示エリア --- */
 .progress-label {
     font-size: 0.9em;
     font-weight: bold;
     color: #2c3e50;
     margin-bottom: 5px;
-    
-/* 画面上部に固定 */    
     position: sticky;
     top: 0;
     z-index: 101;
-    background-color: #f9f9f9; /* 背後の文字が透けないよう背景色を指定 */
+    background-color: #f9f9f9;
     padding-top: 10px;
 }
 
-/* 進捗バーの外枠*/
 .progress-container {
     width: 100%;
     background-color: #e0e0e0;
     border-radius: 10px;
-    margin: 5px 0 20px 0;
-
-    /*ラベルの下に固定 */
+    margin-bottom: 20px; /* marginの省略 */
     position: sticky;
     top: 35px;
     z-index: 100;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 透過度の修正 */
 }
 
-/*進捗バー本体*/
 .progress-bar {
     height: 25px;
     background-color: #27ae60;
     color: white;
-    text-align: center;
     line-height: 25px;
     width: 0%;
     min-width: 35px;
     border-radius: 10px;
     transition: width 0.4s ease, background-color 0.4s ease;
     font-size: 0.9em;
+    text-align: center;
 }
 
 .progress-bar.is-empty {
     background-color: #bdc3c7 !important;
 }
 
-/* --- コンテンツのスタイル --- */
+/* --- コンテンツスタイル --- */
 h1 {
     text-align: center;
     color: #2c3e50;
@@ -67,15 +59,10 @@ h1 {
     padding-bottom: 10px;
 }
 
-/* =========================
-   アコーディオン（章）
-========================= */
-
 .chapter {
     margin-bottom: 10px;
 }
 
-/* 章タイトル */
 h2 {
     background-color: #4779d4;
     color: #fff;
@@ -83,33 +70,23 @@ h2 {
     margin-top: 30px;
     border-radius: 5px;
     font-size: 1.2em;
-
     display: flex;
     align-items: center;
-
     cursor: pointer;
     user-select: none;
     transition: opacity 0.2s;
 }
 
-/* ホバー */
 h2:hover {
     opacity: 0.9;
 }
 
-/* =========================
-   右端進捗（重要修正）
-========================= */
 .chapter-progress {
-    margin-left: auto;   /* ←これで右端固定 */
+    margin-left: auto;
     font-size: 0.9em;
     font-weight: bold;
     opacity: 0.9;
 }
-
-/* =========================
-   矢印アイコン
-========================= */
 
 .chapter-title::after {
     content: "▼";
@@ -119,57 +96,39 @@ h2:hover {
     transition: transform 0.2s ease;
 }
 
-/* 開いたとき */
 .chapter.open .chapter-title::after {
     content: "▲";
 }
 
-/* =========================
-   中身（アコーディオン）
-========================= */
-
-/* 閉じてる状態 */
+/* --- アコーディオン中身 --- */
 .item-group {
     background-color: #fff;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-
     display: none;
 }
 
-/* 開いた状態 */
 .chapter.open .item-group {
     display: block;
 }
 
-/* =========================
-   タスク
-========================= */
-
+/* --- タスク --- */
 .todo-item {
     display: flex;
     align-items: center;
     padding: 8px 10px;
-    border: 2px solid transparent;
-    border-bottom-color: #eee;
-    margin: 2px 0;
-    border-radius: 4px;
-    transition: all 0.2s;
+    border-bottom: 1px solid #eee; /* border一括指定の簡略化 */
+    transition: 0.2s;
 }
 
 .todo-item:hover {
-    border-color: #333;
     background-color: #f0f0f0;
     cursor: pointer;
 }
 
 .todo-item:last-child {
-    border-bottom-color: transparent;
-}
-
-.todo-item:last-child:hover {
-    border-bottom-color: #333;
+    border-bottom: none;
 }
 
 input[type="checkbox"] {
@@ -183,11 +142,10 @@ label {
     cursor: pointer;
     flex: 1;
     font-size: 0.95em;
-    transition: color 0.3s;
 }
 
-/* 完了状態 */
 .is-completed {
     color: #27ae60 !important;
     font-weight: bold;
 }
+
